@@ -19,7 +19,7 @@ export default function Login() {
   };
   useEffect(() => {
     if (localStorage.getItem("chat-app-data")) {
-      navigate("/chat");
+      navigate("/");
     }
   }, []);
 
@@ -56,7 +56,7 @@ export default function Login() {
           "chat-app-data",
           JSON.stringify(data.user)
         );
-        navigate("/chat");
+        navigate("/");
       }
     }
   };

@@ -8,11 +8,10 @@ import "react-toastify/dist/ReactToastify.css";
 import { registerRoute } from "../utils/APIRoutes";  
 
 const Register = () => {
-
     useEffect(() => {
       // if (localStorage.getItem(process.env.REACT_APP_LOCALHOST_KEY)) {
       if (localStorage.getItem("chat-app-data")) {
-        // navigate("/chat");
+        // navigate("/");
       }
     }, []);
     
@@ -82,7 +81,7 @@ const Register = () => {
                     "chat-app-data",
                     JSON.stringify(data.user)
                   );
-                  navigate("/chat");
+                  navigate("/");
                 }
               }
     };

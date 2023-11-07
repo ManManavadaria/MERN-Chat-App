@@ -1,7 +1,7 @@
 const bcrypt = require('bcrypt');
 const User = require('../models/userModel');
 module.exports.register = async (req,resp,next)=>{
-    console.log(req.body);
+    // console.log(req.body);
     try{
         const {username,password,email} = req.body;
 
@@ -44,7 +44,6 @@ module.exports.login = async(req,resp,next)=>{
 
 module.exports.setAvatar = async(req,resp,next) =>{
     try{
-        console.log("inside async func");
         const {image} = req.body;
         const _id = req.params.id;
         // console.log(userId);
@@ -52,8 +51,8 @@ module.exports.setAvatar = async(req,resp,next) =>{
             isAvatarImageSet: true,
             avatarImage: image,
         });
-        console.log(user);
-        return resp.json({msg:"avatar set sucessfully",isSet:true});
+        // console.log(user);
+        return resp.json({msg:"avatar set sucessfully",isSet:true,image:image});
     }
     catch(err){
         next(err);
@@ -63,7 +62,7 @@ module.exports.setAvatar = async(req,resp,next) =>{
 module.exports.getAllUser = async(req,resp,next) =>{
     try{
         const user =await User.find({_id:{$ne : req.params.id}}).select(["email","username","avatarImage","_id"]);
-        console.log(user);
+        // console.log(user);
         return resp.json(user);
 
 }

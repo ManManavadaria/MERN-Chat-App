@@ -15,19 +15,16 @@ export default function Chat() {
   const [currentChat, setCurrentChat] = useState(undefined);
   const [currentUser, setCurrentUser] = useState(undefined);
 
-  useEffect(()=>{(async() => {
-    if (!localStorage.getItem("chat-app-data")) {
-      navigate("/login");
-    } else {
-      setCurrentUser(
-        await JSON.parse(
-          localStorage.getItem("chat-app-data")
-        )
-      );
-    }
-  })()}
-
-  , []);
+  useEffect(() => {
+      if (!localStorage.getItem("chat-app-data")) {
+        navigate("/login");
+      } else {
+        setCurrentUser(
+           JSON.parse(localStorage.getItem("chat-app-data"))
+        );
+      }
+    ;
+  }, []);
 
   useEffect( () => { (async () => {
     if (currentUser) {

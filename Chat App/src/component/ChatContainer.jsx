@@ -37,7 +37,11 @@ export default function ChatContainer({ currentChat, socket }) {
     const data = await JSON.parse(
       localStorage.getItem("chat-app-data")
     );
-
+    socket.current.emit("send-msg", {
+      to: currentChat._id,
+      from: data._id,
+      msg,
+    });
     await axios.post(sendMessageRoute, {
       from: data._id,
       to: currentChat._id,

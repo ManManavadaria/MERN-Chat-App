@@ -42,12 +42,12 @@ const SetAvatar = () => {
 
       if (data.isSet) {
         user.isAvatarImageSet = true;
-        user.avatarImage = data.image;
+        user.avatarImage = avatars[selectedAvatar];
+        const avatarString = JSON.stringify(user);
         localStorage.setItem(
-          "chat-app-data",
-          JSON.stringify(user)
+          "chat-app-data",avatarString
         );
-        navigate("/chat");
+        navigate("/");
       } else {
         toast.error("Error setting avatar. Please try again.", toastOptions);
       }

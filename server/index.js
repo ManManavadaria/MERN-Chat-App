@@ -24,7 +24,7 @@ const port = process.env .PORT || 4000;
 const server = app.listen(port, ()=>{
     console.log(`your server is running on port ${port}`);
 });
-
+  
 const io = socket(server, {
     cors: {
       origin: 'http://127.0.0.1:5173', // Update this with your actual frontend URL
@@ -32,16 +32,19 @@ const io = socket(server, {
     },
   });
   
-  const onlineUsers = new Map();
-  io.on('connection', (socket) => {
-    socket.on('add-user', (userId) => {
+  global.onlineUsers = new Map();
+  io.on("connection", (socket) => {
+    global.chatSocket = socket;
+    socket.on("add-user", (userId) => {
       onlineUsers.set(userId, socket.id);
     });
   
-    socket.on('send-msg', (data) => {
+    socket.on("send-msg", (data) => {
+      console.log(data);
       const sendUserSocket = onlineUsers.get(data.to);
       if (sendUserSocket) {
-        socket.to(sendUserSocket).emit('msg-receive', data.msg);
+        socket.to(sendUserSocket).emit("msg-recieve", data.msg);
       }
     });
+
   });

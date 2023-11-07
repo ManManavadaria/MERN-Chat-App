@@ -29,9 +29,9 @@ module.exports.addMessages =async (req,resp,next)=>{
             users:[from,to],
             sender: from,
         })
-        console.log(data);
+        // console.log(data);
         if (data) resp.json({msg:"message loaded sucessfully",status:true});
-        resp.json({msg:"error to load messages",staus:false});
+        else resp.json({msg:"error to load messages",staus:false});
     
     }catch(err){
         next(err);       
