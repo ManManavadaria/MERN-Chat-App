@@ -1,12 +1,13 @@
 import React, { useState, useEffect, useRef } from "react";
 import styled from "styled-components";
 import ChatInput from "./ChatInput";
+import { BiArrowBack } from "react-icons/bi";
 import Logout from "./Logout";
 import { v4 as uuidv4 } from "uuid";
 import axios from "axios";
 import { sendMessageRoute, recieveMessageRoute } from "../utils/APIRoutes";
 
-export default function ChatContainer({ currentChat, socket }) {
+export default function ChatContainer({ currentChat, changeChat, socket }) {
   const [messages, setMessages] = useState([]);
   const scrollRef = useRef();
   const [arrivalMessage, setArrivalMessage] = useState(null);
@@ -32,7 +33,9 @@ export default function ChatContainer({ currentChat, socket }) {
     };
     getCurrentChat();
   }, [currentChat]);
-
+  const handleBackClick =()=> {
+      changeChat(undefined);
+  }
   const handleSendMsg = async (msg) => {
     const data = await JSON.parse(
       localStorage.getItem("chat-app-data")
@@ -84,6 +87,9 @@ export default function ChatContainer({ currentChat, socket }) {
             <h3>{currentChat.username}</h3>
           </div>
         </div>
+        <Button onClick={handleBackClick}>
+        <BiArrowBack />
+        </Button>
         <Logout />
       </div>
       <div className="chat-messages">
@@ -180,4 +186,21 @@ const Container = styled.div`
     }
   }
 `;
+
+const Button = styled.button`
+
+  display: flex;
+  justify-content: right;
+  align-items: center;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  background-color: #9a86f3;
+  border: none;
+  cursor: pointer;
+  svg {
+    font-size: 1.3rem;
+    color: #ebe7ff;
+  }
+
+`
 

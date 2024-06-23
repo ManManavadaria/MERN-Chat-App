@@ -27,7 +27,7 @@ const server = app.listen(port, ()=>{
   
 const io = socket(server, {
     cors: {
-      origin: 'http://127.0.0.1:5173', // Update this with your actual frontend URL
+      origin: "*", // Update this with your actual frontend URL
       credentials: true,
     },
   });

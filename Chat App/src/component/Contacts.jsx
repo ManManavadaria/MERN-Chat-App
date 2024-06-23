@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-import Logo from "../assets/logo.svg";
-
+import Logo from "../assets/logo1.svg";
+import "../App.css";
 function Contacts({contacts,changeChat}) {
 const [currentUserImg,setCurrentUserImg] = useState(undefined);
 const [currentUserName,setCurrentUserName] = useState(undefined);
@@ -24,10 +24,10 @@ const changeCurrentChat = (index,contact)=>{
   return (  
     <>
     {
-      currentUserImg && currentUserName && (<Container>
+      currentUserImg && currentUserName && (<Container className="rightContainer">
         <div className="brand">
           <img src={Logo} alt="logo" />
-          <h3>snappy</h3>
+          <h3>Chat App</h3>
         </div>
         <div className="contacts">
           {contacts.map((contact,index)=>{

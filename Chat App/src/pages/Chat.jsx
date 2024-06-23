@@ -46,17 +46,17 @@ export default function Chat() {
 
   const handleChatChange = (chat) => {
     setCurrentChat(chat);
-    console.log(chat);
+    console.log(chat); 
   };
   return (
     <>
       <Container>
         <div className="container">
-          <Contacts contacts={contacts} changeChat={handleChatChange}  />
+          <Contacts contacts={contacts} changeChat={handleChatChange} />
           {currentChat === undefined ? (
-            <Welcome />
+            <Welcome className="right"/>
           ) : (
-            <ChatContainer currentChat={currentChat} socket={socket} />
+            <ChatContainer currentChat={currentChat} changeChat={handleChatChange} socket={socket} />
           )}
         </div>
       </Container>
@@ -81,6 +81,11 @@ const Container = styled.div`
     grid-template-columns: 25% 75%;
     @media screen and (min-width: 720px) and (max-width: 1080px) {
       grid-template-columns: 35% 65%;
+    }
+  }
+  .right{
+    @media (max-width:425px ){
+      display: none;
     }
   }
 `;

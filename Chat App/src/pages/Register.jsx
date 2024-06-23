@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import styled from "styled-components";
 import { useNavigate, Link } from "react-router-dom";
-import Logo from "../assets/logo.svg";
+import Logo from "../assets/logo1.svg";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { registerRoute } from "../utils/APIRoutes";  
@@ -92,7 +92,7 @@ const Register = () => {
           <form action="" onSubmit={(event) => handleSubmit(event)}>
             <div className="brand">
               <img src={Logo} alt="logo" />
-              <h1>snappy</h1>
+              <h1>Chat App</h1>
             </div>
             <input
               type="text"
@@ -161,6 +161,18 @@ const FormContainer = styled.div`
     background-color: #00000076;
     border-radius: 2rem;
     padding: 3rem 5rem;
+    @media (max-width: 768px) {
+      padding: 3rem;
+      margin : 4rem;
+    }
+    @media (max-width: 425px) {
+      padding: 2rem;
+      margin : 3rem;
+    }
+    @media (max-width: 320px) {
+      padding: 2rem 1.2rem;
+      margin : 1.2rem;
+    }
   }
   input {
     background-color: transparent;
