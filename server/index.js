@@ -36,21 +36,31 @@ const server = app.listen(port, () => {
 
 // Socket.io configuration
 const io = socket(server, {
-    cors: corsOptions
+    cors: {
+        origin: 'https://mern-chat-app-front-end.vercel.app',
+        methods: ['GET', 'POST'],
+        allowedHeaders: ['Content-Type', 'Authorization'],
+        credentials: true
+    }
 });
 
 global.onlineUsers = new Map();
 io.on("connection", (socket) => {
+    console.log('New socket connection:', socket.id);
     global.chatSocket = socket;
     socket.on("add-user", (userId) => {
         onlineUsers.set(userId, socket.id);
+        console.log('User added:', userId);
     });
 
     socket.on("send-msg", (data) => {
-        console.log(data);
+        console.log('Message received:', data);
         const sendUserSocket = onlineUsers.get(data.to);
         if (sendUserSocket) {
             socket.to(sendUserSocket).emit("msg-recieve", data.msg);
+            console.log('Message sent to:', data.to);
+        } else {
+            console.log('User not found:', data.to);
         }
     });
 });
