@@ -17,14 +17,7 @@ mongoose.connect(process.env.MONGO_URL, {
 });
 
 // CORS configuration
-const corsOptions = {
-    origin: 'https://mern-chat-app-front-end.vercel.app', 
-    methods: ['GET', 'POST', 'PUT', 'DELETE'],
-    allowedHeaders: ['Content-Type', 'Authorization'],
-    credentials: true
-};
-
-app.use(cors(corsOptions));    
+app.use(cors({ origin: true, credentials: true }));    
 app.use(express.json());
 app.use("/api/auth", userRouter);
 app.use("/api/messages", messageRouter);
@@ -37,7 +30,7 @@ const server = app.listen(port, () => {
 // Socket.io configuration
 const io = socket(server, {
     cors: {
-        origin: 'https://mern-chat-app-front-end.vercel.app',
+        origin: true,
         methods: ['GET', 'POST'],
         allowedHeaders: ['Content-Type', 'Authorization'],
         credentials: true
