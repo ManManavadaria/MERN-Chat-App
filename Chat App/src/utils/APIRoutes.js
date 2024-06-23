@@ -1,4 +1,5 @@
-export const host = "https://mern-chat-app-gules-gamma.vercel.app";
+// export const host = "https://mern-chat-app-gules-gamma.vercel.app";
+export const host = "https://mern-chat-app-server-new.vercel.app";
 export const loginRoute = `${host}/api/auth/login`;
 export const registerRoute = `${host}/api/auth/register`;
 export const logoutRoute = `${host}/api/auth/logout`;

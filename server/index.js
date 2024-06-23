@@ -17,7 +17,7 @@ mongoose.connect(process.env.MONGO_URL, {
 });
 
 // CORS configuration
-app.use(cors({ origin: true, credentials: true }));    
+// app.use(cors({ origin: "*", credentials: true }));    
 app.use(express.json());
 app.use("/api/auth", userRouter);
 app.use("/api/messages", messageRouter);
