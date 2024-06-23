@@ -18,7 +18,7 @@ mongoose.connect(process.env.MONGO_URL, {
 
 // CORS configuration
 const corsOptions = {
-    origin: '*', // Replace with your frontend URL
+    origin: 'https://mern-chat-app-front-end.vercel.app', 
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     allowedHeaders: ['Content-Type', 'Authorization'],
     credentials: true
